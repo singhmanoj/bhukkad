@@ -76,10 +76,28 @@ WSGI_APPLICATION = 'bhukkad.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('mysql_name'),
+        'USER': os.environ.get('mysql_user'),
+        'PASSWORD': os.environ.get('mysql_pass'),
+        'HOST': os.environ.get('mysql_host'),
+        'PORT': os.environ.get('mysql_port')
     }
 }
+
+ELASTICSEARCH_CONN = [
+    {
+        'host': os.environ.get('elastic_host'),
+        'port': os.environ.get('elastic_port')
+    },
+]
+
+RABBITMQ_SETTINGS = {
+    "username": os.environ.get('rabbitmq_username'),
+    "password": os.environ.get('rabbitmq_password'),
+    "host": os.environ.get('rabbitmq_host'),
+}
+
 
 
 # Internationalization
